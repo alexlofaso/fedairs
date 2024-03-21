@@ -34,11 +34,9 @@ jobs:
     - name: Terraform Init
       id: init
       run: terraform init
-      working-directory: Fedairs\askAI
 
     - name: Terraform Plan
       id: plan
       run: terraform plan
-      working-directory: Fedairs\askAI
       
         
