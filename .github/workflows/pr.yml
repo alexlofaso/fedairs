@@ -34,5 +34,11 @@ jobs:
     - name: Terraform Init
       id: init
       run: terraform init
+      working-directory: ./askAI
+
+    - name: Terraform Plan
+      id: plan
+      run: terraform plan
+      working-directory: ./askAI
       
         
