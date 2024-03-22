@@ -34,9 +34,11 @@ jobs:
     - name: Terraform Init
       id: init
       run: terraform init -var-file="askai.tfvars"
+      working-directory: .\askAI
 
     - name: Terraform Plan
       id: plan
       run: terraform plan -var-file="askai.tfvars"
+      working-directory: .\askAI
       
         
