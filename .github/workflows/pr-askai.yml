@@ -1,4 +1,4 @@
-name: 'Terraform Plan'
+name: 'Ask AI Terraform Plan'
 on:
   pull_request:
     branches:
@@ -36,12 +36,14 @@ jobs:
         ARM_ACCESS_KEY: ${{ secrets.AZURE_TFSTATE_EASTUS_KEY }}
       id: init
       run: terraform init
+      working-directory: ./askAI
 
     - name: Terraform Plan
       env: 
         ARM_ACCESS_KEY: ${{ secrets.AZURE_TFSTATE_EASTUS_KEY }}
       id: plan
       run: terraform plan
+      working-directory: ./askAI
 
       
         

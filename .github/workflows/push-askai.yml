@@ -1,4 +1,4 @@
-name: 'Terraform Apply'
+name: 'Ask AI Terraform Apply'
 on:
   pull_request:
     types:
@@ -37,10 +37,12 @@ jobs:
                 ARM_ACCESS_KEY: ${{ secrets.AZURE_TFSTATE_EASTUS_KEY }}
               id: init
               run: terraform init
+              working-directory: AskAI
 
             - name: Terraform Apply
               env:
                 ARM_ACCESS_KEY: ${{ secrets.AZURE_TFSTATE_EASTUS_KEY }}
               id: apply
               run: terraform apply -auto-approve
+              working-directory: AskAI
             
