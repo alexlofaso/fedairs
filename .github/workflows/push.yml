@@ -33,10 +33,14 @@ jobs:
                 terraform_wrapper: false
 
             - name: Terraform Init
+              env:
+                ARM_ACCESS_KEY: ${{ secrets.AZURE_TFSTATE_EASTUS_KEY }}
               id: init
               run: terraform init
 
             - name: Terraform Apply
+              env:
+                ARM_ACCESS_KEY: ${{ secrets.AZURE_TFSTATE_EASTUS_KEY }}
               id: apply
               run: terraform apply -auto-approve
             
