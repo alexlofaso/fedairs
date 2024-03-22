@@ -5,6 +5,12 @@ terraform {
       version = "=3.96.0"
     }
   }
+
+  backend "azurerm" {
+    storage_account_name = "allofasotfstate"
+    container_name = "askai"
+    key = "Fedairs/askai/terraform.tfstate"
+    }
 }
 
 provider "azurerm" {

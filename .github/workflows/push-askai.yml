@@ -1,0 +1,44 @@
+name: 'Ask AI Terraform Apply'
+on:
+  pull_request:
+    types:
+        - closed
+    branches:
+      - 'main'
+
+permissions:
+    id-token: write
+    contents: read
+
+jobs:
+    terraform-apply:
+        runs-on: windows-latest
+        environment: production
+        steps:
+
+            - uses: actions/checkout@v3
+
+            - name: OIDC Login to Azure Public Cloud with AzPowershell
+              uses: azure/login@v1
+              with:
+                client-id: ${{ secrets.AZURE_CLIENT_ID }}
+                tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+                subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+            - name: Setup Terraform
+              id: setup
+              uses: hashicorp/setup-terraform@v2
+              with:
+                terraform_version: 1.6.6
+                terraform_wrapper: false
+
+            - name: Terraform Init
+              id: init
+              run: terraform init
+              working-directory: AskAI
+
+            - name: Terraform Apply
+              id: apply
+              run: terraform apply -auto-approve
+              working-directory: AskAI
+            
