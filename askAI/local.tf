@@ -13,7 +13,7 @@ locals {
   application_insights_name        = "infoasst-ai-nrcya"
   app_service_environment_name     = "infoasst-asev3-nrcya"
 
-  azure_client_id      = "3aff5d4e-1f13-4a7d-947e-612aae549f5d" # Russell's Tenant
+  azure_client_id      = "04879724-714b-49b4-9d70-acec5dc91016" # Alex Fedairs' Tenant
   azure_management_url = "https://management.core.windows.net/"
 
   COSMOSDB_LOG_CONTAINER_NAME  = "statuscontainer"
