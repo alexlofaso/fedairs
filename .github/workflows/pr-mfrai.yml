@@ -1,0 +1,49 @@
+name: 'My First Rodeo AI Terraform Plan'
+on:
+  pull_request:
+    branches:
+      - 'main'
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  terraform-plan:
+    runs-on: windows-latest
+    environment: production
+    steps:
+      # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v3
+      
+    - name: OIDC Login to Azure Public Cloud with AzPowerShell
+      uses: azure/login@v1
+      with:
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+    - name: Setup Terraform
+      id: setup
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: 1.6.6
+        terraform_wrapper: false
+
+    - name: Terraform Init
+      env:
+        ARM_ACCESS_KEY: ${{ secrets.AZURE_TFSTATE_EASTUS_KEY }}
+      id: init
+      run: terraform init
+      working-directory: ./mfrAI
+
+    - name: Terraform Plan
+      env: 
+        ARM_ACCESS_KEY: ${{ secrets.AZURE_TFSTATE_EASTUS_KEY }}
+      id: plan
+      run: terraform plan
+      working-directory: ./mfrAI
+
+      
+        
