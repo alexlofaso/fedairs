@@ -8,6 +8,7 @@ locals {
     key_resource_group_name = "key-rg"
     monitoring_resource_group_name = "monitoring-rg"
     net_resource_group_name = "net-rg"
+    virtual_network_address_space = ["10.0.0.0/16"]
 
     tags = {
     "FISMA_Id"      = "MFRAI"
