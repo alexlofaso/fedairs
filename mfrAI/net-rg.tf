@@ -19,6 +19,34 @@ resource "azurerm_subnet" "web" {
   address_prefixes = ["10.0.0.0/24"]
 }
 
+resource "azurerm_subnet" "aisvc" {
+  name  = "${local.prefix}-aisvc-sn"
+  resource_group_name = azurerm_resource_group.netrg.name
+  virtual_network_name = azurerm_virtual_network.mfr-network.name
+  address_prefixes = ["10.0.1.0/24"]
+}
+
+resource "azurerm_subnet" "data" {
+  name  = "${local.prefix}-data-sn"
+  resource_group_name = azurerm_resource_group.netrg.name
+  virtual_network_name = azurerm_virtual_network.mfr-network.name
+  address_prefixes = ["10.0.2.0/24"]
+}
+
+resource "azurerm_subnet" "mgmt" {
+  name  = "${local.prefix}-mgmt-sn"
+  resource_group_name = azurerm_resource_group.netrg.name
+  virtual_network_name = azurerm_virtual_network.mfr-network.name
+  address_prefixes = ["10.0.3.0/24"]
+}
+
+resource "azurerm_subnet" "agwy" {
+  name  = "${local.prefix}-agwy-sn"
+  resource_group_name = azurerm_resource_group.netrg.name
+  virtual_network_name = azurerm_virtual_network.mfr-network.name
+  address_prefixes = ["10.0.4.0/24"]
+}
+
 resource "azurerm_private_dns_zone" "example" {
   name                = "myrai.com"
   resource_group_name = azurerm_resource_group.netrg.name
