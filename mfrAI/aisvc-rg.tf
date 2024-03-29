@@ -41,6 +41,7 @@ module "cognitive_account_enrichment" {
   location            = azurerm_resource_group.aisvcrg.location
   resource_group_name = azurerm_resource_group.aisvcrg.name
 
+  custom_subdomain_name = "infoasst-enrichment-cog-${local.rando}" 
   kind                 = "CognitiveServices"
   name                 = "infoasst-enrichment-cog-${local.rando}"
   private_dns_zone_ids = [azurerm_private_dns_zone.example.id]
