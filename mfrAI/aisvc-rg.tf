@@ -16,6 +16,6 @@ module "cognitive_account_openai" {
   name                  = "infoasst-aoai-${local.rando}"
   private_dns_zone_ids  = [azurerm_private_dns_zone.example.id]
   sku_name              = "S0"
-  subnet_id             = "${azurerm_virtual_network.example.id}/subnets/subnet1"
+  subnet_id             = "${azurerm_virtual_network.mfr-network.id}/subnets/${local.prefix}-aisvc-sn"
   tags                  = local.tags
 }
