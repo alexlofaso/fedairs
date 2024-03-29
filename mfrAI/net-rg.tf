@@ -47,6 +47,36 @@ resource "azurerm_subnet" "agwy" {
   address_prefixes = ["10.0.4.0/24"]
 }
 
+resource "azurerm_network_security_group" "web" {
+  name = "${local.prefix}-web-nsg"
+  location = azurerm_resource_group.netrg.location
+  resource_group_name = azurerm_resource_group.netrg.name
+}
+
+resource "azurerm_network_security_group" "aisvc" {
+  name = "${local.prefix}-aisvc-nsg"
+  location = azurerm_resource_group.netrg.location
+  resource_group_name = azurerm_resource_group.netrg.name
+}
+
+resource "azurerm_network_security_group" "data" {
+  name = "${local.prefix}-data-nsg"
+  location = azurerm_resource_group.netrg.location
+  resource_group_name = azurerm_resource_group.netrg.name
+}
+
+resource "azurerm_network_security_group" "mgmt" {
+  name = "${local.prefix}-mgmt-nsg"
+  location = azurerm_resource_group.netrg.location
+  resource_group_name = azurerm_resource_group.netrg.name
+}
+
+resource "azurerm_network_security_group" "agwy" {
+  name = "${local.prefix}-agwy-nsg"
+  location = azurerm_resource_group.netrg.location
+  resource_group_name = azurerm_resource_group.netrg.name
+}
+
 resource "azurerm_private_dns_zone" "example" {
   name                = "myrai.com"
   resource_group_name = azurerm_resource_group.netrg.name
