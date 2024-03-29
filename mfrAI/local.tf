@@ -1,6 +1,7 @@
 locals {
     location = "EastUS"
     prefix = "mfrai"
+    rando = "mfr01"
 
     aisvc_resource_group_name = "aisvc-rg"
     app_resource_group_name = "app-rg"
